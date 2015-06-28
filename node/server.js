@@ -8,8 +8,10 @@ tcp.createServer(function (socket) {
   })
 
   server.on('stream', function (stream) {
+    console.log('got new stream')
     console.log(stream.method, stream.path, stream.headers)
-    stream.respond(200, {
+    /*
+      stream.respond(200, {
       header: 'value'
     })
 
@@ -27,7 +29,8 @@ tcp.createServer(function (socket) {
 
     // And other node.js Stream APIs
     // ...
+    */
   })
 
-}).listen(9988)
+}).listen(9090)
 
