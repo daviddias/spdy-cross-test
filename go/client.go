@@ -18,8 +18,7 @@ func main() {
 	}
 
 	header := http.Header{}
-	header.Add(":method", "GET")
-	header.Add("host", "localhost")
+	header.Add(":method", "POST")
 	header.Add(":path", "/")
 
 	stream, err := spdyConn.CreateStream(header, nil, false)
@@ -31,9 +30,9 @@ func main() {
 
 	fmt.Fprint(stream, "Writing to stream")
 
-	// buf := make([]byte, 25)
-	// stream.Read(buf)
-	// fmt.Println(string(buf))
+	buf := make([]byte, 25)
+	stream.Read(buf)
+	fmt.Println(string(buf))
 
 	stream.Close()
 }

@@ -2,7 +2,7 @@ var tcp = require('net')
 var fs = require('fs')
 
 function snif (srcPort, dstPort, srcName, dstName) {
-  var folder = __dirname + /capture/
+  var folder = __dirname + '/capture/'
 
   tcp.createServer(function (srcSocket) {
     var dstSocket = tcp.connect({port: dstPort}, connected)
@@ -21,4 +21,4 @@ function snif (srcPort, dstPort, srcName, dstName) {
   }).listen(srcPort)
 }
 
-snif(8080, 9090, 'node-c', 'node-s')
+snif(8080, 9090, 'go-c', 'node-s')
