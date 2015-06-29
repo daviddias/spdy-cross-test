@@ -4,6 +4,7 @@ var transport = require('spdy-transport')
 tcp.createServer(function (socket) {
   var server = transport.connection.create(socket, {
     protocol: 'spdy',
+    windowSize: 256,
     isServer: true
   })
 
@@ -12,7 +13,7 @@ tcp.createServer(function (socket) {
     console.log(stream.method, stream.path, stream.headers)
 
     stream.respond(200, {
-      header: 'value'
+      there: 'there'
     })
 
     stream.on('readable', function () {
