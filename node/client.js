@@ -15,7 +15,12 @@ var socket = tcp.connect({port: 9090}, function () {
 
   client.start(3.1)
 
-  client.request({ method: 'GET', host: 'localhost', path: '/' }, function (err, stream) {
+  client.request({ method: 'GET',
+                   host: 'localhost',
+                   path: '/',
+                   headers: {
+                    a: 'b'
+                   }}, function (err, stream) {
     if (err) {
       return console.log(err)
     }
