@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	conn, err := net.Dial("tcp", "localhost:9090")
+	conn, err := net.Dial("tcp", "localhost:8080")
 	if err != nil {
 		panic(err)
 	}
@@ -18,8 +18,10 @@ func main() {
 	}
 
 	header := http.Header{}
-	header.Add(":method", "POST")
+	header.Add(":method", "GET")
 	header.Add(":path", "/")
+
+	go spdyConn.Serve(spdystream.NoOpStreamHandler)
 
 	stream, err := spdyConn.CreateStream(header, nil, false)
 	if err != nil {

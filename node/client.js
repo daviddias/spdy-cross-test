@@ -25,6 +25,17 @@ var socket = tcp.connect({port: 9090}, function () {
       return console.log(err)
     }
     console.log('got stream')
+    stream.write('yo!')
+
+    stream.on('readable', function () {
+      var chunk = stream.read()
+      if (!chunk) {
+        return
+      }
+      console.log(chunk.toString())
+    })
+
+
 
     stream.on('response', function (code, headers) {
       console.log(code, headers)
