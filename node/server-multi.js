@@ -6,6 +6,22 @@ tcp.createServer(function (socket) {
     protocol: 'spdy',
     windowSize: 256,
     isServer: true
+  }, function(){
+    /* Doesn't err, but doesn't open the stream either
+    server.request({
+      method: 'get',
+      host: 'localhost',
+      path: '/',
+      headers: {
+        aaaa: 'bbb'
+      }
+    }, function (err, stream) {
+      if (err) {
+        return console.log(err)
+      }
+      console.log('woop, managed to request to a client')
+    })
+    */ 
   })
 
   server.on('stream', function (stream) {
@@ -27,6 +43,7 @@ tcp.createServer(function (socket) {
     })
   })
 
+  // setTimeout(function () {
   server.request({
     method: 'GET',
     host: 'localhost',
@@ -40,5 +57,6 @@ tcp.createServer(function (socket) {
     }
     console.log('woop, managed to request to a client')
   })
+  // }, 1000)
 
 }).listen(9090)
